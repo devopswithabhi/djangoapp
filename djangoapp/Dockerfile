@@ -1,4 +1,4 @@
-FROM python:3.11.1
+FROM python:alpine3.12
 
 ENV my_app=djangoapp
 
