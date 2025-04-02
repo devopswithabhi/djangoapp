@@ -1,11 +1,11 @@
-FROM python:alpine3.12
+FROM python:5.2
 
 ENV my_app=djangoapp
 
 WORKDIR /djangoapp
 COPY . .
 
-RUN pip install -r requiremants.txt
+RUN pip install -r requirements.txt
 
 EXPOSE 8000
 
