@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -120,3 +121,39 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',  # Change to INFO or DEBUG
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',  # Very important
+            'propagate': False,
+        },
+    },
+    'django.request': {
+            'handlers': ['console'],
+            'level': 'INFO',     # 👈 This will show GET/POST logs
+            'propagate': False,
+    },
+    'myapp': {  # 👈 Replace with your actual app name
+            'handlers': ['console'],
+            'level': 'INFO',
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'WARNING',  # 👈 Root logs kept minimal
+    },
+    
+}
